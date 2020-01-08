@@ -16,6 +16,7 @@ import java.util.Scanner;
  * @author Owner
  */
 public class saveCsv {
+	//https://www.youtube.com/watch?v=ugka_yKT-k4&t=159s-- useful tutorial
 //    private String empName;
 //    private int empSalary;
 //    private int empDeptId;
@@ -109,11 +110,15 @@ public class saveCsv {
              String  line;
              
              while((line=br.readLine())!=null){
+            	
                  String[] value = line.split(",");
-                 String sql ="INSERT INTO employee (emp_name,salary,deptId) " +"values('"+value[0]+"','"+value[1]+"','"+value[2]+"' )";
-                 Connection conn = connect();
-                 PreparedStatement pst = conn.prepareStatement(sql);
-                 pst.executeUpdate();
+                 if(value.length==3) {
+                	 String sql ="INSERT INTO employee (emp_name,salary,deptId) " +"values('"+value[0]+"','"+value[1]+"','"+value[2]+"' )";
+                     Connection conn = connect();
+                     PreparedStatement pst = conn.prepareStatement(sql);
+                     pst.executeUpdate();
+                 }
+                 
              }
              br.close();
         }catch(Exception e){
